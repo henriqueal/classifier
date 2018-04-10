@@ -1,9 +1,11 @@
 def mean(data):
-	print("deve retornar a media dos dados")
+	print("input: matriz de dados")
+	print("output: deve retornar um vetor com as medias de cada coluna da matriz")
 	return 1
 
 def standard_deviation(data):
-	print("deve retornar o desvio padrao dos dados")
+	print("input: matriz de dados")
+	print("output: deve retornar um vetor com os desvios padroes de cada coluna da matriz")
 	return 1
 
 def z_score(data):
@@ -11,7 +13,8 @@ def z_score(data):
 	dev = standard_deviation(data)
 	
 	for i range(len(data)):
-		data[i] = (data[i] - mean)/dev
+		for j in range(len(data[i])):
+			data[i][j] = (data[i][j] - mean[j])/dev[j]
 	return data
 
 z_score(range(2))
