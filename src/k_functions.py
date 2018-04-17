@@ -7,22 +7,22 @@ def exists_in_array(array, number):
 			return True
 	return False
 	
-def k_max_array(array,k):
+def k_min_array(array,k):
 	size = len(array)
 	results = []
-	k_array = []
 	
 	for j in range(0, k):
-		max = array[0]
-		iteration_max = 0
+		#print(j)
+		min = array[0]
+		iteration_min = 0
 		for i in range(0, size):
-			if (array[i] > max and (exists_in_array(results,i) == False)):
-				max = array[i]
-				iteration_max = i
-
-		results.append(iteration_max)
-	
+			if (array[i] < min):
+				min = array[i]
+				iteration_min = i
+		array[iteration_min] = 999999
+		results.append(iteration_min)
 	return results
+	
 	
 def k_nearest_classes(mat_of_distances, k):
 	
@@ -30,7 +30,7 @@ def k_nearest_classes(mat_of_distances, k):
 	mat_result = []
 	
 	for point in range(0,numberPoints):
-		mat_result.append(k_max_array(mat_of_distances[point],k))
+		mat_result.append(k_min_array(mat_of_distances[point],k))
 
 	return mat_result
 
@@ -84,21 +84,48 @@ def get_most_recurrence(array):
 	size_index_list = len(index_list_amount)
 	max = index_list_amount[0][1]
 	higher = index_list_amount[0][0]
+	max_index = 0
 	for i in range(0,size_index_list):
 		if index_list_amount[i][1] > max:
 			max = index_list_amount[i][1]
-			higher = index_list_amount[i][0]
+			max_index = i
+			#higher = index_list_amount[i][0]
 
-	return higher
+	count = 0
+	for i in range(0,size_index_list):
+		if index_list_amount[i][1] == max:
+			count = count + 1
+			
+	if (count == 1):
+		return index_list_amount[max_index][0]
+		
+	return -1
 
+#array = [9,2,3,4,7]
+
+#print(get_most_recurrence(array))
 	
-def get_most_recurrence_class(matrix):
+def get_most_recurrence_class(mat_of_distances, k_of_knn):
+	matrix = k_nearest_classes(mat_of_distances, k_of_knn)
+	
+	print("matrix")
+	print(matrix)
+	
+	#TODO parei aqui
+	#matrix = convert(matrix)
+	
 	amount_lines = len(matrix)
+	
 	result = []
-	
 	for i in range(0,amount_lines):
-		result.append(get_most_recurrence(matrix[i]))
-	
+		
+		if (get_most_recurrence(matrix[i]) == -1):
+			print(1)
+			#result.append(get_most_recurrence_class(mat_of_distances,k_of_knn-1))
+		else:
+			print(2)
+			result.append(get_most_recurrence(matrix[i]))
+	#print(result)
 	return result
 
 #index_list = []
@@ -118,28 +145,28 @@ def get_most_recurrence_class(matrix):
 
 	
 	
-#array1 = [0,2,3,4,7]
-#array2 = [2,0,3,1,5]
-#array3 = [3,3,0,2,6]
-#array4 = [4,1,2,0,8]
-#array5 = [7,5,6,8,0]
-#matrix_distances = []
-#matrix_distances.append(array1)
-#matrix_distances.append(array2)
-#matrix_distances.append(array3)
-#matrix_distances.append(array4)
-#matrix_distances.append(array5)
+array1 = [9,2,3,4,7]
+array2 = [3,3,3,1,3]
+array3 = [3,3,9,2,6]
+array4 = [4,1,2,9,8]
+array5 = [7,5,6,8,9]
+matrix_distances = []
+matrix_distances.append(array1)
+matrix_distances.append(array2)
+matrix_distances.append(array3)
+matrix_distances.append(array4)
+matrix_distances.append(array5)
 
-#show_matrix(matrix_distances)
+show_matrix(matrix_distances)
 
-#k = 3
+k = 3
 #k_classes = k_nearest_classes(matrix_distances, k)
 
 #show_matrix(k_classes)
 
-#most_recurrence_class = get_most_recurrence_class(k_classes)
+print( get_most_recurrence_class(matrix_distances, k))
 
-#print()
-#print()
-#print()
+print()
+print()
+print()
 #show_array(most_recurrence_class)
