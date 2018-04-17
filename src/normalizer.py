@@ -1,6 +1,6 @@
 import math
 
-def mean(data):
+def mean_of_data(data):
 	#print("input: matriz de dados")
 	#print("output: deve retornar um vetor com as medias de cada coluna da matriz")
 
@@ -42,9 +42,12 @@ def standard_deviation(data,mean):
 	return result
 
 def z_score(data):
-	mean = mean(data)
+	mean = mean_of_data(data)
 	dev = standard_deviation(data,mean)
-
+	print("Media")
+	print(mean)
+	print("St Dev")
+	print(dev)
 	for i in range(len(data)):
 		for j in range(len(data[i])):
 			if(j < len(data[i]) - 1):
