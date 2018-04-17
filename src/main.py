@@ -32,7 +32,7 @@ with open('../input/'+filename) as f:
         else:
             matrix_line = line.split(' ')
             matrix_line[len(matrix_line)-1] = matrix_line[len(matrix_line)-1].split('\r\n')[0]
-            data.append(matrix_line)
+            data.append(map(float,matrix_line))
         print(line)
 
 print(data)
