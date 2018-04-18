@@ -12,7 +12,6 @@ def k_min_array(array,k):
 	results = []
 	
 	for j in range(0, k):
-		#print(j)
 		min = array[0]
 		iteration_min = 0
 		for i in range(0, size):
@@ -24,15 +23,25 @@ def k_min_array(array,k):
 	return results
 	
 	
-def k_nearest_classes(mat_of_distances, k):
+# Esta funcao retorna as k classes mais proximas. É necessario passar como parametro a matriz
+# de treinamento, em que a coluna [4] é a classe de cada dado
+def k_nearest_classes(array_of_distances, k, mat_treinados):
 	
-	numberPoints = len(mat_of_distances[0])
-	mat_result = []
+	classes = get_classes(mat_treinados)
 	
-	for point in range(0,numberPoints):
-		mat_result.append(k_min_array(mat_of_distances[point],k))
+	#numberPoints = len(mat_of_distances[0])
+	k_nearest_classes = k_min_array(array_of_distances,k)
 
-	return mat_result
+	# para cada dado de teste, os k dados mais proximos
+	#for point in range(0,numberPoints):
+		#mat_result.append(k_min_array(mat_of_distances[point],k))
+		
+	# substitui a matriz de dados mais proximos, pelas suas respectivas classes
+	#for i in range(0, numberPoints):
+	for j in range(0, k):
+		k_nearest_classes[j] = classes[k_nearest_classes[j]]
+
+	return k_nearest_classes
 
 def show_array(array):
 	size = len(array)
@@ -69,8 +78,8 @@ def index_on_index_list(index_list, number):
 			return i
 	return -1
 		
-		
-def get_most_recurrence(array):
+# pega a maior recorrencia em um array. Se 2 tiverem a mesma quantia, retorna -1
+def get_most_recurrence_in_array(array):
 	size = len(array)
 	
 	index_list_amount = []
@@ -99,34 +108,42 @@ def get_most_recurrence(array):
 	if (count == 1):
 		return index_list_amount[max_index][0]
 		
+	# possui dois ou mais valores maximos com a mesma quantidade
 	return -1
 
-#array = [9,2,3,4,7]
-
-#print(get_most_recurrence(array))
+# retorna um vetor: o indice do vetor é o dado, e o valor no indice é a classe do dado
+def get_classes(training_matrix):
+	amount_lines = len(training_matrix)
+	classes = []
 	
-def get_most_recurrence_class(mat_of_distances, k_of_knn):
-	matrix = k_nearest_classes(mat_of_distances, k_of_knn)
-	
-	print("matrix")
-	print(matrix)
-	
-	#TODO parei aqui
-	#matrix = convert(matrix)
-	
-	amount_lines = len(matrix)
-	
-	result = []
 	for i in range(0,amount_lines):
+		classes.append(training_matrix[i][4])
+	
+	return classes
+			
 		
-		if (get_most_recurrence(matrix[i]) == -1):
-			print(1)
-			#result.append(get_most_recurrence_class(mat_of_distances,k_of_knn-1))
-		else:
-			print(2)
-			result.append(get_most_recurrence(matrix[i]))
-	#print(result)
-	return result
+	
+# Retorna a classe que possui maior recorrencia
+def get_most_recurrence_class(array_of_distances, k, training_matrix):
+	k_classes = k_nearest_classes(array_of_distances, k, training_matrix)
+	
+	#amount_lines = len(mat_of_k_classes)
+	
+	#show_matrix(mat_of_distances)
+	
+	print("k_classes antes:")
+	print(k_classes)
+	
+	while(get_most_recurrence_in_array(k_classes) == -1 and k > 0):
+		print("[[criterio de desempate = k-1]]")
+		k = k-1
+		k_classes = k_nearest_classes(array_of_distances, k, training_matrix)
+	
+	
+	print("k_classes depois:")
+	print(k_classes)
+	
+	return get_most_recurrence_in_array(k_classes)
 
 #index_list = []
 #index_list.append([7,2])
@@ -142,6 +159,18 @@ def get_most_recurrence_class(mat_of_distances, k_of_knn):
 #array = [1,2,2,2,2,2,2,2,2,9,9,9,9,9,9,9,9,9,20,20,20,20,20,20,20,20,3,4,5]
 #array = [1,2,3,4]
 #print(get_most_recurrence(array))
+
+array1 = [9,2,3,4,1]
+array2 = [3,3,3,1,1]
+array3 = [3,3,9,2,2]
+array4 = [4,1,2,9,2]
+array5 = [7,5,6,8,3]
+training_matrix = []
+training_matrix.append(array1)
+training_matrix.append(array2)
+training_matrix.append(array3)
+training_matrix.append(array4)
+training_matrix.append(array5)
 
 	
 	
@@ -159,14 +188,17 @@ matrix_distances.append(array5)
 
 show_matrix(matrix_distances)
 
-k = 3
-#k_classes = k_nearest_classes(matrix_distances, k)
+k = 4
+#k_classes = k_nearest_classes(matrix_distances, k, training_matrix)
 
 #show_matrix(k_classes)
 
-print( get_most_recurrence_class(matrix_distances, k))
+print()
+print()
+print()
+for i in range(0, len(matrix_distances)):
+	#print("---------------------")
+	print(get_most_recurrence_class(matrix_distances[i], k, training_matrix))
+	print("---------------------")
 
-print()
-print()
-print()
 #show_array(most_recurrence_class)
