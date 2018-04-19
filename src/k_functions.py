@@ -202,3 +202,39 @@ for i in range(0, len(matrix_distances)):
 	print("---------------------")
 
 #show_array(most_recurrence_class)
+
+
+def judge_answer(pair_classified, test_data):
+	amount_data = len(test_data)
+	
+	correct_answer = 0
+	wrong_answer = 0
+	for i in range(0, amount_data):
+		answer = [0,0]
+		if (pair_classified[i] == test_data[i][4]):
+			correct_answer = correct_answer + 1
+		else:
+			wrong_answer = wrong_answer + 1
+		answer[0] = correct_answer
+		answer[1] = wrong_answer
+	
+	return answer
+	
+vetor = [1,2,3,4,5]
+
+teste = []
+a_teste1 = [0,0,0,0,1]
+a_teste2 = [0,0,0,0,1]
+a_teste3 = [0,0,0,0,2]
+a_teste4 = [0,0,0,0,4]
+a_teste5 = [0,0,0,0,5]
+teste.append(a_teste1)
+teste.append(a_teste2)
+teste.append(a_teste3)
+teste.append(a_teste4)
+teste.append(a_teste5)
+
+print("judge:")
+print(judge_answer(vetor,teste))
+	
+	
