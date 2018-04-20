@@ -1,10 +1,9 @@
-import k_nn
-import k_fold
+from quality_measurer import *
 
-normalization = true
-k_of_kfold = 3
-k_of_knn = 3
-filename = "../input/dados.txt"
+#normalization = True
+#k_of_kfold = 3
+#k_of_knn = 3
+#filename = "../input/dados.txt"
 
 #Ler do usuario
 normalization = raw_input("Deseja utilizar o z-score? (y/n)")

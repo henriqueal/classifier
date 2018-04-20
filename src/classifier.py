@@ -1,3 +1,5 @@
+from k_functions import *
+
 def k_nn(train_data, test_data, k_of_knn, normalization):
 
 	if(normalization):

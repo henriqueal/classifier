@@ -1,5 +1,6 @@
 #dic = {"test_size" : 10, "correct_answer" : 3, "wrong_answer" : 7}
 import math
+from classifier import *
 
 def process(k_of_kfold, i, data, data_type):
 	print("process")
@@ -7,8 +8,8 @@ def process(k_of_kfold, i, data, data_type):
 	print(k_of_kfold)
 	print(i)
 	print(data_type)
-
-        data_size = len(data)
+	
+	data_size = len(data)
 	data_group_size = int(math.ceil(data_size / float(k_of_kfold)))
 
 	line_count = 0
