@@ -19,6 +19,6 @@ def k_nn(train_data, test_data, k_of_knn, normalization):
 	array_of_answer = judge_answer(pair_classified, test_data)
 	
 	# falta implementar essa array_to_dic
-	dict_of_answer = array_to_dic(array_of_answer)
+	#dict_of_answer = array_to_dic(array_of_answer)
 
-	return dict_of_answer
+	return array_of_answer

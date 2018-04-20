@@ -1,4 +1,20 @@
+def judge_answer(pair_classified, test_data):
+	amount_data = len(test_data)
+	
+	correct_answer = 0
+	wrong_answer = 0
+	for i in range(0, amount_data):
+		answer = [0,0]
+		if (pair_classified[i] == test_data[i][len(test_data[0])-1]):
+			correct_answer = correct_answer + 1
+		else:
+			wrong_answer = wrong_answer + 1
+		answer[0] = correct_answer
+		answer[1] = wrong_answer
+	
+	return answer
 
+	
 def exists_in_array(array, number):
 	size = len(array)
 	
@@ -8,56 +24,49 @@ def exists_in_array(array, number):
 	return False
 	
 def k_min_array(array,k):
-	size = len(array)
+	novo_array = list(array)
+	size = len(novo_array)
 	results = []
 	
 	for j in range(0, k):
-		min = array[0]
+		min = novo_array[0]
 		iteration_min = 0
 		for i in range(0, size):
-			if (array[i] < min):
-				min = array[i]
+			if (novo_array[i] < min):
+				min = novo_array[i]
 				iteration_min = i
-		array[iteration_min] = 999999
+		novo_array[iteration_min] = 999999
 		results.append(iteration_min)
 	return results
 	
 	
 # Esta funcao retorna as k classes mais proximas. É necessario passar como parametro a matriz
-# de treinamento, em que a coluna [4] é a classe de cada dado
+# de treinamento, em que a ultima coluna é a classe de cada dado
 def k_nearest_classes(array_of_distances, k, mat_treinados):
 	
 	classes = get_classes(mat_treinados)
+	print("array_of_distances")
+	print(array_of_distances)
 	
-	#numberPoints = len(mat_of_distances[0])
+	print("mat_treinados")
+	print(mat_treinados)
+	
 	k_nearest_classes = k_min_array(array_of_distances,k)
 
-	# para cada dado de teste, os k dados mais proximos
-	#for point in range(0,numberPoints):
-		#mat_result.append(k_min_array(mat_of_distances[point],k))
-		
+	print("k_nearest_data")
+	print(k_nearest_classes)
+	
 	# substitui a matriz de dados mais proximos, pelas suas respectivas classes
 	#for i in range(0, numberPoints):
 	for j in range(0, k):
 		k_nearest_classes[j] = classes[k_nearest_classes[j]]
 
+		
+	print("k_nearest_classes")
+	print(k_nearest_classes)
+	
+		
 	return k_nearest_classes
-
-def show_array(array):
-	size = len(array)
-	
-	for i in range(0,size):
-		print(array[i])
-
-def show_matrix(matrix):
-	amount_columns = len(matrix[0])
-	amount_lines = len(matrix)
-	
-	for i in range(0,amount_lines):
-		for j in range(0, amount_columns):
-			print(matrix[i][j], end='')
-			print(" ", end='')
-		print ('')
 		
 		
 # funcao para somar 1 no numero definido na lista de indices
@@ -117,19 +126,13 @@ def get_classes(training_matrix):
 	classes = []
 	
 	for i in range(0,amount_lines):
-		classes.append(training_matrix[i][4])
+		classes.append(training_matrix[i][len(training_matrix[0])-1])
 	
 	return classes
-			
-		
 	
 # Retorna a classe que possui maior recorrencia
 def get_most_recurrence_class(array_of_distances, k, training_matrix):
 	k_classes = k_nearest_classes(array_of_distances, k, training_matrix)
-	
-	#amount_lines = len(mat_of_k_classes)
-	
-	#show_matrix(mat_of_distances)
 	
 	print("k_classes antes:")
 	print(k_classes)
@@ -144,21 +147,6 @@ def get_most_recurrence_class(array_of_distances, k, training_matrix):
 	print(k_classes)
 	
 	return get_most_recurrence_in_array(k_classes)
-
-#index_list = []
-#index_list.append([7,2])
-#index_list.append([19,1])
-#index_list.append([10,1])
-#index_list.append([20,1])
-
-#print(index_list[0][1])
-
-#print(index_on_index_list(index_list,10))
-
-
-#array = [1,2,2,2,2,2,2,2,2,9,9,9,9,9,9,9,9,9,20,20,20,20,20,20,20,20,3,4,5]
-#array = [1,2,3,4]
-#print(get_most_recurrence(array))
 
 array1 = [9,2,3,4,1]
 array2 = [3,3,3,1,1]
@@ -186,16 +174,11 @@ matrix_distances.append(array3)
 matrix_distances.append(array4)
 matrix_distances.append(array5)
 
-show_matrix(matrix_distances)
+print("distance_matrix")
+print(matrix_distances)
 
 k = 4
-#k_classes = k_nearest_classes(matrix_distances, k, training_matrix)
 
-#show_matrix(k_classes)
-
-print()
-print()
-print()
 for i in range(0, len(matrix_distances)):
 	#print("---------------------")
 	print(get_most_recurrence_class(matrix_distances[i], k, training_matrix))
@@ -204,37 +187,22 @@ for i in range(0, len(matrix_distances)):
 #show_array(most_recurrence_class)
 
 
-def judge_answer(pair_classified, test_data):
-	amount_data = len(test_data)
 	
-	correct_answer = 0
-	wrong_answer = 0
-	for i in range(0, amount_data):
-		answer = [0,0]
-		if (pair_classified[i] == test_data[i][4]):
-			correct_answer = correct_answer + 1
-		else:
-			wrong_answer = wrong_answer + 1
-		answer[0] = correct_answer
-		answer[1] = wrong_answer
-	
-	return answer
-	
-vetor = [1,2,3,4,5]
+#vetor = [1,2,3,4,5]
 
-teste = []
-a_teste1 = [0,0,0,0,1]
-a_teste2 = [0,0,0,0,1]
-a_teste3 = [0,0,0,0,2]
-a_teste4 = [0,0,0,0,4]
-a_teste5 = [0,0,0,0,5]
-teste.append(a_teste1)
-teste.append(a_teste2)
-teste.append(a_teste3)
-teste.append(a_teste4)
-teste.append(a_teste5)
+#teste = []
+#a_teste1 = [0,0,0,0,1]
+#a_teste2 = [0,0,0,0,1]
+#a_teste3 = [0,0,0,0,2]
+#a_teste4 = [0,0,0,0,4]
+#a_teste5 = [0,0,0,0,5]
+#teste.append(a_teste1)
+#teste.append(a_teste2)
+#teste.append(a_teste3)
+#teste.append(a_teste4)
+#teste.append(a_teste5)
 
-print("judge:")
-print(judge_answer(vetor,teste))
+#print("judge:")
+#print(judge_answer(vetor,teste))
 	
 	
