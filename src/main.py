@@ -1,26 +1,29 @@
+import sys
+from normalizer import *
 from quality_measurer import *
 
-#normalization = True
-#k_of_kfold = 3
-#k_of_knn = 3
-#filename = "../input/dados.txt"
+normalization = "n"
+k_of_kfold = 3
+k_of_knn = 3
+filename = "dados_random.txt"
 
 #Ler do usuario
-normalization = raw_input("Deseja utilizar o z-score? (y/n)")
+#normalization = input("Deseja utilizar o z-score? (y/n)")
 
 if(normalization == "y"):
     normalization = True
 else:
     normalization = False 
-
-k_of_kfold = raw_input("Por favor informe o numero de particoes do k-fold:")
-k_of_knn = raw_input("Por favor informe o numero de vizinhos do k-NN:")
-filename = raw_input("Por favor informe o nome do arquivo de dados:")
+	
+#k_of_kfold = input("Por favor informe o numero de particoes do k-fold:")
+#k_of_knn = input("Por favor informe o numero de vizinhos do k-NN:")
+#filename = input("Por favor informe o nome do arquivo de dados:")
 
 line_count = 0
 data = []
 numberSamples = 0
 numberAttributes = 0
+
 
 with open('../input/'+filename) as f:
     for line in f:
@@ -31,9 +34,14 @@ with open('../input/'+filename) as f:
         else:
             matrix_line = line.split(' ')
             matrix_line[len(matrix_line)-1] = matrix_line[len(matrix_line)-1].split('\r\n')[0]
-            data.append(map(float,matrix_line))
-        print(line)
+            array_data = []	
+            for data_string in matrix_line:
+                array_data.append(float(data_string))
+            data.append(array_data)
 
-print(data)
+#print("data:")
+#print(data)
+if normalization:
+	data = z_score(data)
 
-k_fold(data, normalization, k_of_kfold, k_of_knn)
+print(k_fold(data, k_of_kfold, k_of_knn,normalization))

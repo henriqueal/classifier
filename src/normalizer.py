@@ -2,14 +2,17 @@ from distance_calculator import *
 import math
 
 def mean_of_data(data):
-	#print("input: matriz de dados")
-	#print("output: deve retornar um vetor com as medias de cada coluna da matriz")
+	##print("input: matriz de dados")
+	##print("output: deve retornar um vetor com as medias de cada coluna da matriz")
 
 	column = 0
 	line = 0
 	result = []
 	sum = 0
 
+	#print("DATA 0!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!s")
+	#print(data)
+	
 	while(column < len(data[0])):
 		while(line < len(data)):
 			sum = sum + data[line][column]
@@ -22,8 +25,8 @@ def mean_of_data(data):
 	return result
 
 def standard_deviation(data,mean):
-	#print("input: matriz de dados")
-	#print("output: deve retornar um vetor com os desvios padroes de cada coluna da matriz")
+	##print("input: matriz de dados")
+	##print("output: deve retornar um vetor com os desvios padroes de cada coluna da matriz")
 
 	column = 0
 	line = 0
@@ -43,12 +46,15 @@ def standard_deviation(data,mean):
 	return result
 
 def z_score(data):
+	#print("data z_score")
+	#print(data)
+	
 	mean = mean_of_data(data)
 	dev = standard_deviation(data,mean)
-	print("Media")
-	print(mean)
-	print("St Dev")
-	print(dev)
+	#print("Media")
+	#print(mean)
+	#print("St Dev")
+	#print(dev)
 	for i in range(len(data)):
 		for j in range(len(data[i])):
 			if(j < len(data[i]) - 1):
@@ -56,5 +62,5 @@ def z_score(data):
 	return data
 
 #z_score(range(2))
-#print(mean([[0,1,3],[1,2,4],[2,10,20]]))
-#print(standard_deviation([[0,1,3],[1,2,4],[2,10,20]],[1, 4, 9]))
+##print(mean([[0,1,3],[1,2,4],[2,10,20]]))
+##print(standard_deviation([[0,1,3],[1,2,4],[2,10,20]],[1, 4, 9]))

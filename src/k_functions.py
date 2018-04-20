@@ -45,16 +45,16 @@ def k_min_array(array,k):
 def k_nearest_classes(array_of_distances, k, mat_treinados):
 	
 	classes = get_classes(mat_treinados)
-	print("array_of_distances")
-	print(array_of_distances)
+	##print("array_of_distances")
+	##print(array_of_distances)
 	
-	print("mat_treinados")
-	print(mat_treinados)
+	##print("mat_treinados")
+	##print(mat_treinados)
 	
 	k_nearest_classes = k_min_array(array_of_distances,k)
 
-	print("k_nearest_data")
-	print(k_nearest_classes)
+	##print("k_nearest_data")
+	##print(k_nearest_classes)
 	
 	# substitui a matriz de dados mais proximos, pelas suas respectivas classes
 	#for i in range(0, numberPoints):
@@ -62,8 +62,8 @@ def k_nearest_classes(array_of_distances, k, mat_treinados):
 		k_nearest_classes[j] = classes[k_nearest_classes[j]]
 
 		
-	print("k_nearest_classes")
-	print(k_nearest_classes)
+	#print("k_nearest_classes")
+	#print(k_nearest_classes)
 	
 		
 	return k_nearest_classes
@@ -134,16 +134,16 @@ def get_classes(training_matrix):
 def get_most_recurrence_class(array_of_distances, k, training_matrix):
 	k_classes = k_nearest_classes(array_of_distances, k, training_matrix)
 	
-	print("k_classes antes:")
-	print(k_classes)
+	##print("k_classes antes:")
+	##print(k_classes)
 	
 	while(get_most_recurrence_in_array(k_classes) == -1 and k > 0):
-		print("[[criterio de desempate = k-1]]")
+		##print("[[criterio de desempate = k-1]]")
 		k = k-1
 		k_classes = k_nearest_classes(array_of_distances, k, training_matrix)
 	
 	
-	print("k_classes depois:")
-	print(k_classes)
+	##print("k_classes depois:")
+	##print(k_classes)
 	
 	return get_most_recurrence_in_array(k_classes)
