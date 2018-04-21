@@ -32,4 +32,4 @@ def euclidean_distance(train_data, test_data):
 
 
 
-print(euclidean_distance([[0,1,3],[2,4,5],[6,7,10]], [[40,50,60]]))
+#print(euclidean_distance([[0,1,3],[2,4,5],[6,7,10]], [[6,7,10]]))

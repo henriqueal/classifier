@@ -130,7 +130,7 @@ def k_fold(data, k_of_kfold, k_of_knn, normalization):
 	testSamples =[]
 	#processType = "standard"
 	#processType = "random"
-	processType = "serialize"
+	processType = "random"
 	for i in range(k_of_kfold):
 		copia = list(data)
 		test_data = process(k_of_kfold, i, copia , "test",processType, testSamples)
