@@ -5,7 +5,7 @@ from quality_measurer import *
 normalization = "y"
 k_of_kfold = 3
 k_of_knn = 3
-filename = "dados_random.txt"
+filename = "dados.txt"
 
 #Ler do usuario
 #normalization = input("Deseja utilizar o z-score? (y/n)")

@@ -13,7 +13,7 @@ def euclidean_distance(train_data, test_data):
 		#print("Test: "+str(position_test))
 		while(position_train < len(train_data)):
 			#print("  Train: " + str(position_train))
-			while(position_column < numberColumns):
+			while(position_column < numberColumns-1):
 				#print("    Coluna: " + str(position_column))
 				sum = sum + (train_data[position_train][position_column] - test_data[position_test][position_column])**2
 				position_column = position_column + 1
@@ -30,6 +30,7 @@ def euclidean_distance(train_data, test_data):
 	return result
 
 
+mat_result = euclidean_distance([[0,1,3],[2,4,5],[6,7,10]], [[2,4,5],[6,7,10]])
 
 
-#print(euclidean_distance([[0,1,3],[2,4,5],[6,7,10]], [[6,7,10]]))
+print(mat_result)
