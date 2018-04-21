@@ -40,8 +40,6 @@ with open('../input/'+filename) as f:
                 array_data.append(float(data_string))
             data.append(array_data)
 
-#print("data:")
-#print(data)
 if normalization:
 	data = z_score(data)
 
