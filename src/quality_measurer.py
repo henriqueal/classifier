@@ -51,14 +51,15 @@ def k_fold(data, k_of_kfold, k_of_knn, normalization):
 		
 		train_data = process(k_of_kfold, i, data, "train")
 		test_data = process(k_of_kfold, i, data, "test")
-		print("--------------")
-		print("i")
-		print(i)
-		print("test_data")
-		print(test_data)
-		print("train_data")
-		print(train_data)
-		print("--------------")
+		#print("--------------")
+		#print("i")
+		#print(i)
+		#print("test_data")
+		#print(test_data)
+		#print("train_data")
+		#print(train_data)
+		#print("--------------")
+		#print(k_nn(train_data, test_data, k_of_knn, normalization))
 		matrix_answers.append(k_nn(train_data, test_data, k_of_knn, normalization))
 
 	return matrix_answers
