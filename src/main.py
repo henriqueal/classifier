@@ -43,4 +43,16 @@ with open('../input/'+filename) as f:
 if normalization:
 	data = z_score(data)
 
-print(k_fold(data, k_of_kfold, k_of_knn,normalization))
+array_answers = k_fold(data, k_of_kfold, k_of_knn,normalization)
+
+total_correct = 0
+total_wrong = 0
+for i in range(len(array_answers)):
+	total_correct = total_correct + array_answers[i][0]
+	total_wrong = total_wrong + array_answers[i][1]
+	
+#print(array_answers)
+print("Total correct: " + str(total_correct))
+print("Total wrong: " + str(total_wrong))
+print("Total: " + str(total_wrong+total_correct))
+print("Pecentual: " + str((total_correct*100.0)/(total_wrong+total_correct)) + "%")
